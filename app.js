@@ -1,73 +1,60 @@
-var hello = "Hello World";
-alert(hello);
+// じゃんけんの手を入力してもらうプロンプト欄を生成
+var user_hand = prompt("じゃんけんの手をグー、チョキ、パーから選んでください。");
 
-// 整数を代入する
-var int1 = 1;
+// じゃんけんの手をランダムに作成する関数を呼び出す
+var js_hand = getJShand();
 
-// 負数を代入する
-var int2 = -10;
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数を呼び出し、結果をjudgeに入れる
+var judge = winLose(user_hand, js_hand);
 
-// 小数点を代入する
-var float1 = 3.14;
-
-// 文字列を代入する
-var str1 = "JavaScriptを覚えよう";
-
-// 足し算
-alert(4 + 3);
-
-// 引き算
-alert(8 - 5);
-
-// 掛け算
-alert(2 * 6);
-
-// 割り算
-alert(10 / 2);
-
-// 文字列の結合
-alert("Hello" + "World");
-
-// 変数を利用しで文字列を結合
-var str2 = "Hello";
-var str3 = "World";
-alert(str2 + str3);
+// 結果を表示する
+alert("あなたの選んだ手は" + user_hand + "です。\nJavaScriptの選んだ手は" + js_hand + "です。\n結果は" + judge + "です。");
 
 
-// 条件分岐
-var orange = 100;
-var apple = 120;
+// ランダムでじゃんけんの手を作成する関数
+function getJShand(){
+	var js_hand_num = Math.floor( Math.random() * 3);
 
-if (orange < apple){
-	alert("みかんの値段がリンゴより安い");
-}
-else if (orange == apple){
-	alert("みかんとりんごが同じ値段");
-}
-else{
-	alert("みかんの値段がリンゴより高い");
+	if(js_hand_num == 0){
+		js_hand = "グー";
+	}else if(js_hand_num == 1){
+		js_hand = "チョキ";
+	}else if(js_hand_num == 2){
+		js_hand = "パー";
+	}
+
+	return js_hand;
 }
 
-// 引数の条件がtrueの間、{}内の処理が繰り返される
-var max = 100;
-var num = 1;
-var count = 0;
-
-while(num < max){
-	num = num * 2;
-	count = count + 1;
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数
+function winLose(user, js){
+    var winLoseStr;
+ 
+    if(user == "グー"){
+        if(js == "グー"){
+            winLoseStr = "あいこ";
+        }else if(js == "チョキ"){
+            winLoseStr = "勝ち";
+        }else if(js == "パー"){
+            winLoseStr = "負け";
+        }
+    }else if(user == "チョキ"){
+        if(js == "グー"){
+            winLoseStr = "負け";
+        }else if(js == "チョキ"){
+            winLoseStr = "あいこ";
+        }else if(js == "パー"){
+            winLoseStr = "勝ち";
+        }
+    }else if(user == "パー"){
+        if(js == "グー"){
+            winLoseStr = "勝ち";
+        }else if(js == "チョキ"){
+            winLoseStr = "負け";
+        }else if(js == "パー"){
+            winLoseStr = "あいこ";
+        }
+    }
+ 
+    return winLoseStr;
 }
-
-alert("2をかけ続けて" + max + "を越えるのに必要だった回数は" + count + "回です");
-
-// do...while文
-
-// for文
-var i;
-var num = 0;
-
-for(i = 1; i < 11; i++){
-	num = num + i;
-}
-
-alert("1から10まで足し算した結果は" + num + "です");
